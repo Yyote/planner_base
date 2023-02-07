@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/planner_base.hpp
+iostream
+-
+map
+-
+vector
+-
+
+/home/andrey/PlannerBase/src/test_main.cpp
+iostream
+-
+planner_base.hpp
+/home/andrey/PlannerBase/src/planner_base.hpp
+
