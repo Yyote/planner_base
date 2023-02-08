@@ -79,10 +79,10 @@ Yes, there is a `src/test_main.cpp` file which you can use as an example.
 
 Takes your functional enum variable with a functional knob value that you want to check. Returns function state value bool.
 
-### void print_functional_states()
+#### void print_functional_states()
 
 Prints current functional states.
 
-### void set_mode(enumT mode)
+#### void set_mode(enumT mode)
 
 Takes your mode enum variable with a mode value that you want set. Sets the specified mode and applies the corresponding profile.
