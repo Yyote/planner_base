@@ -69,6 +69,10 @@ After that you can link the library to your executable using `target_link_librar
 	```
 5. Now your `ModeController` is initialized and you can use it for controlling your modes!
 
+### Is there a full example of the code I can start from?
+
+Yes, there is a `src/test_main.cpp` file which you can use as an example.
+
 ### ModeController
 
 #### bool knob_state(enumT functional)
