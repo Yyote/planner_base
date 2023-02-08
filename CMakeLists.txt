@@ -39,17 +39,10 @@ endif()
 add_library(planner_base_lib SHARED src/planner_base.cpp include/planner_base.hpp)
 target_link_libraries(planner_base_lib protobuf)
 
-
 target_include_directories(planner_base_lib
 PUBLIC
-# include
 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
 $<INSTALL_INTERFACE:include>)
-
-install(TARGETS planner_base_lib
-        ARCHIVE DESTINATION ${COLCON_PACKAGE_LIB_DESTINATION}
-        LIBRARY DESTINATION ${COLCON_PACKAGE_LIB_DESTINATION}
-        RUNTIME DESTINATION ${COLCON_GLOBAL_BIN_DESTINATION})
 
 # add_executable(sim_su_bridge_node src/sim_su_bridge.cpp)
 # target_link_libraries(sim_su_bridge_node planner_base_lib zmq pthread)
@@ -75,6 +68,7 @@ install(TARGETS planner_base_lib
 
 add_executable(test_main src/test_main.cpp)
 target_link_libraries(test_main planner_base_lib)
+target_include_directories(test_main PUBLIC include)
 
 
 # ament_package()

@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/andrey/PlannerBase/build",
+  "command": "/usr/bin/g++   -I/home/andrey/PlannerBase/include  -g   -Wall -Wextra -Wpedantic -std=gnu++14 -o CMakeFiles/test_main.dir/src/test_main.cpp.o -c /home/andrey/PlannerBase/src/test_main.cpp",
+  "file": "/home/andrey/PlannerBase/src/test_main.cpp"
+},
+{
+  "directory": "/home/andrey/PlannerBase/build",
+  "command": "/usr/bin/g++  -Dplanner_base_lib_EXPORTS -I/home/andrey/PlannerBase/include  -g -fPIC   -Wall -Wextra -Wpedantic -std=gnu++14 -o CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.o -c /home/andrey/PlannerBase/src/planner_base.cpp",
+  "file": "/home/andrey/PlannerBase/src/planner_base.cpp"
+}
+]

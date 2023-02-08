@@ -60,15 +60,15 @@ include CMakeFiles/planner_base_lib.dir/flags.make
 CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.o: CMakeFiles/planner_base_lib.dir/flags.make
 CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.o: ../src/planner_base.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andrey/PlannerBase/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.o -c /home/andrey/PlannerBase/src/planner_base.cpp
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.o -c /home/andrey/PlannerBase/src/planner_base.cpp
 
 CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrey/PlannerBase/src/planner_base.cpp > CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.i
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andrey/PlannerBase/src/planner_base.cpp > CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.i
 
 CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrey/PlannerBase/src/planner_base.cpp -o CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.s
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andrey/PlannerBase/src/planner_base.cpp -o CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.s
 
 # Object files for target planner_base_lib
 planner_base_lib_OBJECTS = \

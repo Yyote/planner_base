@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC   -shared -Wl,-soname,libplanner_base_lib.so -o libplanner_base_lib.so CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.o  -lprotobuf 
+/usr/bin/g++ -fPIC -g  -shared -Wl,-soname,libplanner_base_lib.so -o libplanner_base_lib.so CMakeFiles/planner_base_lib.dir/src/planner_base.cpp.o  -lprotobuf 
