@@ -2,7 +2,7 @@
 
 ## What is PlannerBase?
 
-PlannerBase is a small library that is meant to simplify the implementation of operation modes. It is packaged as a shared library for C++ usage.
+PlannerBase is a small library that is meant to simplify the implementation of operational modes. It is packaged as a shared library for C++ usage.
 
 ## Installation
 
