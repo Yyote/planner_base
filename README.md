@@ -2,7 +2,7 @@
 
 ## What is PlannerBase?
 
-PlannerBase is a small library that is meant to simplify the implementation of operation modes. It is packaged as a shared library for C++ usage.
+PlannerBase is a small library that is meant to simplify the implementation of operational modes. It is packaged as a shared library for C++ usage.
 
 ## Installation
 
@@ -21,7 +21,7 @@ $<INSTALL_INTERFACE:include>)
 After that you can link the library to your executable using `target_link_libraries()`.
 
 ## Usage
-
+0. `#include "planner_base.hpp"`
 1. Create `enum` type that specifies the functionalities that you want to controll with your modes. The first and the last element of this enum MUST be `FIRST` and `LAST`. Do not redefine element values. For example:
 	```cpp
 	enum functionals
@@ -68,6 +68,10 @@ After that you can link the library to your executable using `target_link_librar
 	auto controller = ModeController<functionals, modes>(functionals(), modes(), profiles);
 	```
 5. Now your `ModeController` is initialized and you can use it for controlling your modes!
+
+### Is there a full example of the code I can start from?
+
+Yes, there is a `src/test_main.cpp` file which you can use as an example.
 
 ### ModeController
 
