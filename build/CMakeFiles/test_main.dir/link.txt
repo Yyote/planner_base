@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/test_main.dir/src/test_main.cpp.o  -o test_main  -Wl,-rpath,/home/andrey/PlannerBase/build libplanner_base_lib.so -lprotobuf 

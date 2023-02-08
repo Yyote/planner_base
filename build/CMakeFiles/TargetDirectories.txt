@@ -1,4 +1,0 @@
-/home/andrey/PlannerBase/build/CMakeFiles/rebuild_cache.dir
-/home/andrey/PlannerBase/build/CMakeFiles/edit_cache.dir
-/home/andrey/PlannerBase/build/CMakeFiles/test_main.dir
-/home/andrey/PlannerBase/build/CMakeFiles/planner_base_lib.dir
