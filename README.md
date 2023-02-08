@@ -21,7 +21,7 @@ $<INSTALL_INTERFACE:include>)
 After that you can link the library to your executable using `target_link_libraries()`.
 
 ## Usage
-0. `#include planner_base.hpp`
+0. `#include "planner_base.hpp"`
 1. Create `enum` type that specifies the functionalities that you want to controll with your modes. The first and the last element of this enum MUST be `FIRST` and `LAST`. Do not redefine element values. For example:
 	```cpp
 	enum functionals
