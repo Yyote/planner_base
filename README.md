@@ -10,7 +10,6 @@ For now, to install PlannerBase you have to clone the repo, put the `planner_bas
 
 ```CMake
 add_library(planner_base_lib SHARED src/planner_base.cpp include/planner_base.hpp)
-target_link_libraries(planner_base_lib protobuf)
   
 target_include_directories(planner_base_lib
 PUBLIC
@@ -22,36 +21,32 @@ After that you can link the library to your executable using `target_link_librar
 
 ## Usage
 0. `#include "planner_base.hpp"`
-1. Create `enum` type that specifies the functionalities that you want to controll with your modes. The first and the last element of this enum MUST be `FIRST` and `LAST`. Do not redefine element values. For example:
+1. Create `std::vector<std::string>` type that specifies the functionalities that you want to controll with your modes. For example:
 	```cpp
-	enum functionals
-	{
-	FIRST,
-	search_for_green_markers,
-	remember_marker_coords,
-	marker_initialisation,
-	search_for_lines,
-	line_identication,
-	remember_line_coords,
-	LAST
-	};
+    std::vector<std::string> functionals
+    {
+        "search_for_green_markers",
+        "remember_marker_coords",
+        "marker_initialisation",
+        "search_for_lines",
+        "line_identication",
+        "remember_line_coords"
+    };
 	```
-2. Create `enum` type that specifies the modes that you want to use. The first and the last element of this enum MUST be `FIRST_` and `LAST_`. Do not redefine element values. For example:
+2. Create `std::vector<std::string>` type that specifies the modes that you want to use. For example:
 	```cpp
-	enum modes
-	{
-	FIRST_,
-	standing_by,
-	taking_off,
-	landing,
-	planning,
-	moving_along_line,
-	moving_to_coords,
-	centering_above_marker,
-	LAST_
-	};
+    std::vector<std::string> modes
+    {
+        "standing_by",
+        "taking_off",
+        "landing",
+        "planning",
+        "moving_along_line",
+        "moving_to_coords",
+        "centering_above_marker"
+    };
 	```
-3. After that you have to specify functionality profiles. They are defined as an `std::vector<bool>` that contains a value for each functionality. BE CAREFUL! The functionality position in vector will be less than its enum value by 1. These profiles go in `std::vector<std::vector<bool>>` in the same order as modes are presentend in your `modes` enum. For example:
+3. After that you have to specify functionality profiles. They are defined as an `std::vector<bool>` that contains a value for each functionality. These profiles go in `std::vector<std::vector<bool>>` in the same order as modes are presentend in your `modes` vector. For example:
 	```cpp
 	std::vector<std::vector<bool>> profiles;
 	profiles.resize(7);
@@ -63,9 +58,9 @@ After that you can link the library to your executable using `target_link_librar
 	profiles.at(5) = {1, 1, 0, 0, 1, 0};
 	profiles.at(6) = {0, 0, 0, 0, 0, 0};
 	```
-4. To controll the mode change or get the state of a functional knob the `ModeController` is used. You have to initialise it with your enums and profiles as follows:
+4. To controll the mode change or get the state of a functional knob the `ModeController` is used. You have to initialise it with your functionals, modes and profiles as follows:
 	```cpp
-	auto controller = ModeController<functionals, modes>(functionals(), modes(), profiles);
+	auto controller = ModeController(functionals, modes, profiles);
 	```
 5. Now your `ModeController` is initialized and you can use it for controlling your modes!
 
@@ -73,16 +68,16 @@ After that you can link the library to your executable using `target_link_librar
 
 Yes, there is a `src/test_main.cpp` file which you can use as an example.
 
-### ModeController
+### ***ModeController***
 
-#### bool knob_state(enumT functional)
+#### **bool knob_state(std::vector\<std::string\> functional)**
 
 Takes your functional enum variable with a functional knob value that you want to check. Returns function state value bool.
 
-#### void print_functional_states()
+#### **void print_functional_states()**
 
 Prints current functional states.
 
-#### void set_mode(enumT mode)
+#### **void set_mode(std::vector\<std::string\> mode)**
 
 Takes your mode enum variable with a mode value that you want set. Sets the specified mode and applies the corresponding profile.

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <string>
 
 /*
 * ################################
@@ -11,22 +12,19 @@
 * ################################
 */
 
-template <typename functionsT> class Knobs
+class Knobs
 {
     public: 
     /*
-    * Конструктор принимает перечисление функциональных переключателей,
+    * Конструктор принимает вектор строк функциональных переключателей,
     * а затем из него формирует вектор всех переключателей и словарь состояний.
-    * ПРИНИМАЕМЫЙ ENUM ДОЛЖЕН ПЕРВЫМ ИМЕТЬ ЗНАЧЕНИЕ "FIRST", 
-    * А ПОСЛЕДНИМ ЗНАЧЕНИЕМ "LAST"
-    * ЗНАЧЕНИЯ ДОЛЖНЫ БЫТЬ ПОСЛЕДОВАТЕЛЬНЫ
     */
-    Knobs(functionsT knobs_enum);
+    Knobs(std::vector<std::string> knobs_list);
 
     /*
     * Возвращает состояние конкретного переключателя
     */
-    bool knob_state(functionsT knob);
+    bool knob_state(std::string knob);
 
     /*
     * Выводит состояния переключаетелей
@@ -37,24 +35,24 @@ template <typename functionsT> class Knobs
     /*
     * Экземпляр переключателей для установки состояний
     */
-    const functionsT knobs;
+    const std::vector<std::string> knobs;
     /*
     * Функция, которая задает состояние переключателя
     */
-    void set_state(functionsT knob, bool state);
+    void set_state(std::string knob, bool state);
 
     private:
     /*
     * Словарь состояний хранит состояния всех переключателей.
     * По умолчанию все состояния равны false
     */
-    std::map<functionsT, bool> knob_state_map;
+    std::map<std::string, bool> knob_state_map;
 
 };
 
 
-template <typename functionsT, typename modesT> class ModeController 
-: public Knobs<functionsT>
+class ModeController 
+: public Knobs
 {
     public:
     /*
@@ -76,18 +74,18 @@ template <typename functionsT, typename modesT> class ModeController
     * Это значит, что первый реальный элемент функционала будет иметь значение 1,
     * а его профиль вектор будет иметь положение 0. И так для каждого элемента.
     */
-    ModeController(functionsT knobs, modesT modes, std::vector<std::vector<bool>> profiles);
+    ModeController(std::vector<std::string> knobs, std::vector<std::string> modes, std::vector<std::vector<bool>> profiles);
 
     /*
     * Принимает необходимый режим и устанавливает состояния переключателей для него
     */
-    void set_mode(modesT mode);
+    void set_mode(std::string mode);
 
     private:
     /*
     * Словарь, хранящий профили переключателей функционала для режимов
     */
-    std::map<modesT, std::vector<bool>> mode_profiles_map;
+    std::map<std::string, std::vector<bool>> mode_profiles_map;
 };
 
 
@@ -98,75 +96,57 @@ template <typename functionsT, typename modesT> class ModeController
 */
 
 
-template <typename functionsT>
-Knobs<functionsT>::Knobs(functionsT knobs_enum)
-: knobs(knobs_enum)
+Knobs::Knobs(std::vector<std::string> knobs_list)
+: knobs(knobs_list)
 {
-    for(int i = functionsT::FIRST; i != functionsT::LAST; ++i)
+    for(int i = 0; i < knobs_list.size(); ++i)
     {
-        if(i == functionsT::FIRST) continue;
-        knobs_enum = static_cast<functionsT>(i);
-        knob_state_map.insert(std::make_pair<functionsT, bool>(std::move(knobs_enum), false));
+        knob_state_map.insert(std::make_pair<std::string, bool>(std::move(knobs_list.at(i)), false));
     }
 }
 
-template <typename functionsT>
-bool Knobs<functionsT>::knob_state(functionsT knob)
+bool Knobs::knob_state(std::string knob)
 {
-    typename std::map<functionsT, bool>::iterator itknob_state_map;
+    std::map<std::string, bool>::iterator itknob_state_map;
+    // DEBUG: NO NOT FOUND VALUE
     itknob_state_map = knob_state_map.find(knob);
     return itknob_state_map->second;
 }
 
-template <typename functionsT>
-void Knobs<functionsT>::print_functional_states()
+void Knobs::print_functional_states()
 {
-    for(int i = 0; i <= knob_state_map.size(); ++i)
+    for(int i = 0; i < knob_state_map.size(); ++i)
     {
-        functionsT knob = static_cast<functionsT>(i);
-        if(knob != functionsT::FIRST && knob != functionsT::LAST)
-        {
-            std::cout << knob_state_map[knob] << " ";
-        }
+        std::string knob = knobs.at(i);
+        std::cout << knob_state_map[knob] << " ";
     }
         std::cout << std::endl;
 }
 
-template <typename functionsT>
-void Knobs<functionsT>::set_state(functionsT knob, bool state)
+void Knobs::set_state(std::string knob, bool state)
 {
-    // typename std::map<functionsT, bool>::iterator itknob_state_map = knob_state_map.find(knob);
+    // typename std::map<std::vector<std::string>, bool>::iterator itknob_state_map = knob_state_map.find(knob);
     // itknob_state_map->second = state;
     knob_state_map[knob] = state;
 }
 
 
-template <typename functionsT, typename modesT>
-ModeController<functionsT, modesT>::ModeController(functionsT knobs, modesT modes, std::vector<std::vector<bool>> profiles)
-: Knobs<functionsT>(knobs)
+ModeController::ModeController(std::vector<std::string> knobs, std::vector<std::string> modes, std::vector<std::vector<bool>> profiles)
+: Knobs(knobs)
 {
-    for(int i = modesT::FIRST_; i != modesT::LAST_; ++i)
+    for(int i = 0; i < modes.size(); ++i)
     {
-        if(i == modesT::FIRST_) continue;
-        modes = static_cast<modesT>(i);
-        mode_profiles_map.insert(std::make_pair<modesT, std::vector<bool>>(std::move(modes), std::move(profiles.at(i - 1))));
+        mode_profiles_map.insert(std::make_pair<std::string, std::vector<bool>>(std::move(modes.at(i)), std::move(profiles.at(i))));
     }
 }
 
-template <typename functionsT, typename modesT>
-void ModeController<functionsT, modesT>::set_mode(modesT mode)
+void ModeController::set_mode(std::string mode)
 {
-    // typename std::map<modesT, std::vector<bool>::iterator itmode_profiles_map = mode_profiles_map.find(mode);
-    
-    // std::vector<bool> profile = itmode_profiles_map->second;
-    // std::vector<bool> profile = mode_profiles_map[mode];
-    functionsT knobs_copy = Knobs<functionsT>::knobs;
+    std::vector<std::string> knobs_copy = Knobs::knobs;
 
-    for(int i = functionsT::FIRST; i != functionsT::LAST; ++i)
+    for(int i = 0; i < knobs_copy.size(); ++i)
     {
-        if(i == functionsT::FIRST) continue;
-        knobs_copy = static_cast<functionsT>(i);
-        Knobs<functionsT>::set_state(knobs_copy, mode_profiles_map[mode].at(i - 1));
+        Knobs::set_state(knobs_copy.at(i), mode_profiles_map[mode].at(i));
     }
 }
 
