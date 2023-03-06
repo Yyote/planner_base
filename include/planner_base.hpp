@@ -144,10 +144,9 @@ void ModeController::set_mode(std::string mode)
 {
     std::vector<std::string> knobs_copy = Knobs::knobs;
 
-    for(int i = 0; i < knobs.size(); ++i)
+    for(int i = 0; i < knobs_copy.size(); ++i)
     {
-        knobs_copy = static_cast<std::vector<std::string>>(i);
-        Knobs::set_state(knobs.at(i), mode_profiles_map[mode].at(i));
+        Knobs::set_state(knobs_copy.at(i), mode_profiles_map[mode].at(i));
     }
 }
 

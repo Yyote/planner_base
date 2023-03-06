@@ -3,7 +3,6 @@
 #include "planner_base.hpp"
 
 
-
 int main()
 {
     std::vector<std::string> functionals
@@ -53,7 +52,7 @@ int main()
     controller.print_functional_states();
     std::cout << std::endl;
 
-    std::cout << "Pinpoint functional state -->" << " remember_marker_coords " << controller.knob_state("remember_marker_coords") << std::endl; 
+    std::cout << "Pinpoint functional state -->" << " " << functionals.at(1) << " " << controller.knob_state("remember_marker_coords") << std::endl; 
 
     
 

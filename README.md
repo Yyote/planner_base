@@ -10,7 +10,6 @@ For now, to install PlannerBase you have to clone the repo, put the `planner_bas
 
 ```CMake
 add_library(planner_base_lib SHARED src/planner_base.cpp include/planner_base.hpp)
-target_link_libraries(planner_base_lib protobuf)
   
 target_include_directories(planner_base_lib
 PUBLIC
@@ -22,7 +21,7 @@ After that you can link the library to your executable using `target_link_librar
 
 ## Usage
 0. `#include "planner_base.hpp"`
-1. Create `std::vector<string>` that specifies the functionalities that you want to controll with your modes. For example:
+1. Create `std::vector<std::string>` type that specifies the functionalities that you want to controll with your modes. For example:
 	```cpp
     std::vector<std::string> functionals
     {
@@ -33,7 +32,6 @@ After that you can link the library to your executable using `target_link_librar
         "line_identification",
         "remember_line_coords"
     };
-
 	```
 2. Create `std::vector<string>` type that specifies the modes that you want to use. For example:
 	```cpp
@@ -60,23 +58,23 @@ After that you can link the library to your executable using `target_link_librar
     profiles.at(5) = {1, 1, 0, 0, 1, 0};
     profiles.at(6) = {0, 0, 0, 0, 0, 0};
 	```
-4. To controll the mode change or get the state of a functional knob the `ModeController` is used. You have to initialise it with your enums and profiles as follows:
+4. To controll the mode change or get the state of a functional knob the `ModeController` is used. You have to initialise it with your functionals, modes and profiles as follows:
 	```cpp
     auto controller = ModeController(functionals, modes, profiles);
 	```
-5. Now your `ModeController` is initialized and you can use it for controlling your modes!
+1. Now your `ModeController` is initialized and you can use it for controlling your modes!
 
 ### Is there a full example of the code I can start from?
 
 Yes, there is a `src/test_main.cpp` file which you can use as an example.
 
-### ModeController
+### ***ModeController***
 
 #### bool knob_state(std::string knob)
 
 Takes your functional string with a functional knob value that you want to check. Returns function state value bool.
 
-### void print_functional_states()
+#### **void print_functional_states()**
 
 Prints current functional states.
 
