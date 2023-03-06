@@ -12,7 +12,7 @@ int main()
         "remember_marker_coords",
         "marker_initialisation",
         "search_for_lines",
-        "line_identication",
+        "line_identification",
         "remember_line_coords"
     };
 

@@ -115,7 +115,7 @@ bool Knobs::knob_state(std::string knob)
 
 void Knobs::print_functional_states()
 {
-    for(int i = 0; i <= knob_state_map.size(); ++i)
+    for(int i = 0; i < knob_state_map.size(); ++i)
     {
         std::string knob = knobs.at(i);
         std::cout << knob_state_map[knob] << " ";
@@ -134,7 +134,7 @@ void Knobs::set_state(std::string knob, bool state)
 ModeController::ModeController(std::vector<std::string> knobs, std::vector<std::string> modes, std::vector<std::vector<bool>> profiles)
 : Knobs(knobs)
 {
-    for(int i = 0; i <= mode_profiles_map.size(); ++i)
+    for(int i = 0; i < modes.size(); ++i)
     {
         mode_profiles_map.insert(std::make_pair<std::string, std::vector<bool>>(std::move(modes.at(i)), std::move(profiles.at(i))));
     }
@@ -144,10 +144,10 @@ void ModeController::set_mode(std::string mode)
 {
     std::vector<std::string> knobs_copy = Knobs::knobs;
 
-    for(int i = 0; i <= mode_profiles_map.size(); ++i)
+    for(int i = 0; i < knobs.size(); ++i)
     {
         knobs_copy = static_cast<std::vector<std::string>>(i);
-        Knobs::set_state(knobs_copy.at(i), mode_profiles_map[mode].at(i));
+        Knobs::set_state(knobs.at(i), mode_profiles_map[mode].at(i));
     }
 }
 
